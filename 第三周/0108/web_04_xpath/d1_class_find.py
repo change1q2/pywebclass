@@ -7,8 +7,8 @@
 # xpath: 先到浏览器当中去确认xpath 表达式是否正确
 
 # 如何去表示xpath:
-1, //input[@class='' and ...]精确匹配
-2, //input[contains(@class, 'class_value')   and    @id='id value']，模糊匹配，并且可以加多个规则
+1, //input[@class='' and ...]
+2, //input[contains(@class, 'class_value')   and    @id='id value']
 
 关系：
 1， . 或者 ..
