@@ -10,10 +10,14 @@
 
 import time
 from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
 #初始化游览器
+from selenium.webdriver.support.wait import WebDriverWait
+
 driver = webdriver.Chrome()
-#进行隐式等待:得不到某个元素就等待一段时间，直到拿到某个元素位置。
-driver.implicitly_wait(30)
+#进行隐式等待:得不到某个元素就等待一段时间，直到拿到某个元素位置，超过对应等待时间会报异常。
+#driver.implicitly_wait(30)
 #输入游览器地址
 driver_url = driver.get("https://www.baidu.com")
 
@@ -34,8 +38,10 @@ print("切换之前的句柄", before_handles)
 
 find_lemone.click()
 
+#显示等待
+e = WebDriverWait(driver,30,0.2).until(EC.element_to_be_clickable((By.XPATH,)))
 
-
+#找到小简老师点击
 
 #关闭游览器
 time.sleep(2)
