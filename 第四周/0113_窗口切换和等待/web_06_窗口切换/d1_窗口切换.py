@@ -17,50 +17,28 @@ input_elem.send_keys('柠檬班')
 # 百度提交
 driver.find_element_by_id('su').click()
 
-
-# 点击腾讯课堂
+#显示等待#更好的表达方式,BY.XPATH可以解耦
+e2 = WebDriverWait(driver, 30, 0.2).until(
+    EC.presence_of_element_located((By.XPATH,"//div/a[contains(text(),'lemon.ke.qq.com')]"))
+)
+print(e2)
+# 找到腾讯课堂位置
 ketang = driver.find_element_by_xpath('//*[contains(text(), "lemon.ke.qq.com/")]')
 
-
+#获取窗口句柄： window_name 名（），句柄（黄口的id）
+# handeles = driver.window_handles
+# print(handeles)
+# #切换窗口
+# driver.switch_to.window(handeles[-1])
 
 
 handles = driver.window_handles
 print("点击之前的所有的句柄", handles)
 
 before_handle = driver.current_window_handle
-
 print("切换之前", driver.current_window_handle)
-
+#点击腾讯课堂
 ketang.click()
-
-#显示等待
-#1.初始化定时器，加一个定时器，poll_frequency(轮询时间)
-wait = WebDriverWait(driver,30,0.2) #driver游览器要做的事情，30代表等待30秒，0.2代表频率，每0.2秒查询一次
-#计时器等待什么事情发生，出现True,不出现False
-#if(a == b)
-
-#表示元素被加载
-#condition = EC.presence_of_element_located()
-#表示元素可以被查看
-#condition = EC.visibility_of_all_elements_located()
-#表示元素可以被点击
-#condition = EC.element_to_be_clickable(locator)
-
-#使用方式，locator确定定位方式和定位数据，传递到condition，condition再将地址传给until就完整的判断出整个条件的传递
-#2.初始化定位器,locator一定是一个元祖
-locator =("xpath", "//input[@id='kw']")
-#3.将定位放到条件当中
-condition = EC.element_to_be_clickable(locator)
-#4.等某个条件被触发
-e = wait.until(condition)
-#wait.until_not()#某个条件不被触发
-print(e)
-#综合起来使用
-# e = WebDriverWait(driver,30,0.2).until(
-#     EC.presence_of_element_located(("xpath","//input[@id='kw']")))
-
-#更好的表达方式,BY.XPATH可以解耦
-e = WebDriverWait(driver,30,0.2).until(EC.presence_of_element_located((By.XPATH,"//input[@id='kw']")))
 
 #连起来使用
 #WebDriverWait(driver, 20,0.2).until(EC.new_window_is_opened(   handles    ))
@@ -76,4 +54,7 @@ e = WebDriverWait(driver,30,0.2).until(EC.presence_of_element_located((By.XPATH,
 #关闭游览器
 time.sleep(2)
 driver.quit()
+
+
+
 
